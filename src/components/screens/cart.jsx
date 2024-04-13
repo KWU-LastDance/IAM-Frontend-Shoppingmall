@@ -1,4 +1,7 @@
-export default function Cart() {
+import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+
+const Cart = () => {
     return (
         <div>
             <h1>IAM</h1>
@@ -6,3 +9,5 @@ export default function Cart() {
         </div>
     );
 }
+
+export default Cart;

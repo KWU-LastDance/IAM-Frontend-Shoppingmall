@@ -8,6 +8,7 @@ import SignIn from './components/screens/signIn'
 import Product from './components/screens/product'
 import Order from './components/screens/order'
 import Cart from './components/screens/cart'
+import CompletedOrder from './components/screens/CompletedOrder'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/product' element={<Product />} />
       <Route path='/order' element={<Order />} />
       <Route path='/cart' element={<Cart />} />
+      <Route path='/completedorder' element={<CompletedOrder />} />
     </Routes>
   )
 }
