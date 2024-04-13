@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'NotoSansKR', "맑은 고딕", Malgun Gothic, AppleSDGothicNeo, "돋움", Dotum, sans-serif;
     }
 
     Link {

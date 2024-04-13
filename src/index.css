@@ -160,6 +160,7 @@ svg {
 .item {
   margin: 10%;
   text-align: left;
+  width: 70%;
 }
 
 .itemImg {

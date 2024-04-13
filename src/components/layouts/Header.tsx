@@ -8,8 +8,8 @@ const Header = () => {
     return (
         <>
           <nav className="nav">
-            <div className="name">
-            <p className='top-name' onClick={()=>navigate('/')}>IAM</p>
+            <div className="name" onClick={()=>navigate('/')}>
+            <p className='top-name'>IAM</p>
             <p className='bottom-name'>Intelligence Agricultural Manager</p>
             </div>
             <SearchBar onChange={(e)=>console.log(e.target.value)} />
