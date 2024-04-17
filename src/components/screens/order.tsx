@@ -7,25 +7,39 @@ import { useState } from 'react';
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     `
 
     const Bar = styled.div`
+    display:flex;
+    position:relative;
+    justify-content:center;
     max-width: 850px;
     background-color: #5F5F5F;
     color: white;
-    display:flex;
     align-items:center;
     height:50px;
+    text-align:center;
     width:100%;
     `
 
     const BackBtn = styled.button`
+    position:absolute;
+    left: 10px;
         background-color: #5F5F5F;
         color: white;
         border: none;
         cursor: pointer;
         margin:auto 10px;
+        `
+    const Svg = styled.svg`
+        width: 25px;
+        height: 25px;
+        `
+
+    const Top = styled.div`
+        font-size:20px;
+        font-weight:bold;
+        align-items:center;
         `
 
     const Body = styled.div`
@@ -37,14 +51,12 @@ import { useState } from 'react';
         text-align:left;
         border-left:1px solid lightgray;
         border-right:1px solid lightgray;
+        box-sizing:border-box;
         `
     
     const Div = styled.div`
-        display:flex;
-        flex-direction:column;
-        margin-left:20px;
-        margin-right:20px;
-    }}>
+    margin-left:20px;
+    margin-right:20px;
         `
 
     const FormDiv = styled.div`
@@ -96,6 +108,7 @@ import { useState } from 'react';
         height:100%;
         font-size:15px;
         cursor:pointer;
+        border: 1px solid gray;
         `
 
     const Pay = styled.div`
@@ -146,9 +159,9 @@ import { useState } from 'react';
         `
     const Agree = styled.p`
         font-size:15px;
-        margin: 40px 0 30px 0;
-
+        margin: 40px 0 30px 20px;
         `
+
     const Order = () => {
         const navigate = useNavigate();
 
@@ -158,11 +171,11 @@ import { useState } from 'react';
         <Container>
         <Bar>
             <BackBtn onClick={()=>{navigate(-1)}}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-</svg>
+</Svg>
 </BackBtn>
-            <Title>IAM   주문/결제</Title>
+            <Top>IAM   주문/결제</Top>
         </Bar>
 
         <Body>
@@ -189,9 +202,9 @@ import { useState } from 'react';
             <FormDiv>          
             <Input type="text" id="detailAddress" name="detailAddress" placeholder='상세주소'/>
             </FormDiv>
-
             <hr style={{border:'1px solid lightgray', width:'100%'}}/>
-
+            </Div>
+            <Div>
             <Title>주문상품</Title>
                 <ItemBox>
                     <Img src="../public/img/apple.jpg" alt="상품이미지"/>
@@ -201,9 +214,11 @@ import { useState } from 'react';
                     <p>3,000원</p>
                     </ItemText>
                 </ItemBox>
+                </Div>
 
                 <hr style={{border:'1px solid lightgray', width:'100%'}}/>
 
+        <Div>
             <Title>결제금액</Title>
             <p>상품금액 3,000원</p>
             <p>배송비 +3,000원</p>
@@ -212,18 +227,18 @@ import { useState } from 'react';
                 fontSize: '17px'
             }}>총 결제금액 6,000원</p>
 
-
+        </Div>
         <hr style={{border:'1px solid lightgray', width:'100%'}}/>
         
+        <Div>
         <Pay>
             <Title>결제수단 선택</Title>
             <PaySelect>무통장입금</PaySelect>
             <PaySelect>신용카드</PaySelect>
             <PaySelect>휴대폰결제</PaySelect>
         </Pay>
-
-        <Agree>주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.</Agree>         
         </Div>
+        <Agree>주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.</Agree>         
 
         <PayButton onClick={()=>navigate('/completedorder')}>6,000원 결제하기</PayButton>
         </Body>
