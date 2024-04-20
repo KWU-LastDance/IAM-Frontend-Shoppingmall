@@ -5,9 +5,9 @@ import Header from '../../layouts/Header';
 
 const Body = styled.div`
     margin-top: 30px;
-    width: 80vw;
+    width: 60vw;
     text-align: center;
-    margin-left: 10vw;
+    margin-left: 20vw;
     margin-bottom: 50px;
     `
 
@@ -39,13 +39,12 @@ const Items = styled.div`
 
 const Item = styled.div`
     display: flex;
-    margin: 40px;
-    align-items: center;
+    margin: 20px;
     font-size: 17px;
-    justify-content: space-between;
-    margin-left: 70px;
-    margin-right: 70px;
-    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    position: relative;
     `
 const Img = styled.img`
     width: 100px;
@@ -53,9 +52,8 @@ const Img = styled.img`
     `
 const Info = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin-left: 70px;
-    margin-right: 70px;
+    margin-left: 50px;
+    margin-bottom: 10px;
     align-items: center;
     `
     const CountBox = styled.div`
@@ -88,15 +86,15 @@ const Info = styled.div`
     const Delivery = styled.div`
     display: flex;
     justify-content: right;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 70px;
+    margin-right: 50px;
     font-size: 17px;
     `
 
     const Total = styled.div`
     display: flex;
     justify-content: right;
-    margin-right: 20px;
+    margin-right: 50px;
     align-items: center;
     font-size: 18px;
     font-weight: 700;
@@ -127,6 +125,15 @@ const Text = styled.p`
 const Check = styled.input`
     width: 130px;
     height: 20px;
+    `
+
+const SinglePrice = styled.p`
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 70px;
+    margin-left: 360px;
+    display: flex;
+    width: 200px;
     `
 
 const Cart = () => {
@@ -189,10 +196,6 @@ const Cart = () => {
                         onChange={(e)=>handleAllCheck(e.target.checked)} 
                         checked={checkItems.length===data.length ? true : false}></AllCheck>
                     </Select>
-                    <TitleText>상품명</TitleText>
-                    <TitleText>이미지</TitleText>
-                    <TitleText>수량</TitleText>
-                    <TitleText>상품금액</TitleText>
                 </Info>
                 <Hr />
 
@@ -201,8 +204,13 @@ const Cart = () => {
                     <Check type='checkbox' name='select'
                     onChange={(e)=>handleSingleCheck(e.target.checked, 1)}
                     ></Check>
-                    <Text>사과 - 상</Text>
+                    
                     <Img src="../public/img/apple.jpg" />
+                    <div style={{
+                                marginLeft: '30px', textAlign:'left'
+                            }}>
+                    <Text>사과 - 상</Text>
+                    
                     <CountBox>
                     <CountBtn onClick={()=>{
                         setCount(count-1);
@@ -218,17 +226,24 @@ const Cart = () => {
                         }
                     }}>+</CountBtn>
                     </CountBox>
-                    <Text>{item}원</Text>
+                    </div>
+
+                    <SinglePrice>{item}원</SinglePrice>
                 </Item>
 
-
                     {data.map((item)=>(
+                        <div>
+                            <Hr />                        
                         <Item key={item.id}>
                             <Check type='checkbox' name='select' 
                             onChange={(e)=>handleSingleCheck(e.target.checked, item.id)} 
                             checked={checkItems.includes(item.id) ? true : false}></Check>
-                            <Text>{item.name}</Text>
+
                             <Img src={item.img} />
+                            <div style={{
+                                marginLeft: '30px', textAlign:'left'
+                            }}>
+                            <Text>{item.name}</Text>
                             <CountBox>
                             <CountBtn onClick={()=>{
                                 // setCount(item.count-1);
@@ -244,14 +259,18 @@ const Cart = () => {
                                 }
                             }}>+</CountBtn>
                             </CountBox>
-                            <Text>{item.price}원</Text>
+                            </div>
+
+                            <SinglePrice>{item.price}원</SinglePrice>
                         
                         </Item>
+                        </div>
+                        
                     ))}
 
                 </Items>    
                 <Delivery>
-                    <p>+ 배송비 3,000원</p>
+                    <p>배송비 3,000원</p>
                 </Delivery>
 
                 <Hr />
