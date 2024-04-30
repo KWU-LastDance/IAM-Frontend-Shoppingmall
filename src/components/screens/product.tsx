@@ -12,10 +12,9 @@ const CountBox = styled.div`
 display: flex;
 width: 105px;
 height: 35px;
+margin-left: 30px;
 border: 1px solid #F0F0F0;
 font-size: 16px;
-margin-top: 10px;
-margin-bottom: 10px;
     `;
 
 const CountBtn = styled.button`
@@ -36,13 +35,17 @@ border: none;
     `;
 
 const OrderBox = styled.div`
+display: flex;
+flex-direction: column;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 30px;
     `
 
 const OrderBtn = styled.button`
-    width: 105px;
+    width: 280px;
     height: 40px;
+    margin-bottom: 10px;
     border: 1px solid #8EEF6E;
     border-radius: 8px;
     background-color: #8EEF6E;
@@ -52,13 +55,12 @@ const OrderBtn = styled.button`
     }
 `
 const CartBtn = styled.button`
-    width: 105px;
+    width: 280px;
     height: 40px;
     border: 2px solid #8EEF6E;
     border-radius: 8px;
     font-size: 16px;
     background-color: white;
-    margin-left: 15px;
     &:hover {
         cursor: pointer;
     }
@@ -117,7 +119,7 @@ const Product = () => {
             setCount(1);
         }
         else
-        setCount(e.target.value);
+        setCount(Number(e.target.value));
     }
 
     const AddCart = () => {
@@ -141,16 +143,22 @@ const Product = () => {
                 <div>
                 <Img src='../public/img/apple.jpg' alt="apple" />
                 </div>
-                <div>
+                <div style={{
+                    textAlign: 'left',
+                }}>
                     <h2 style={{
-                        marginBottom: '50px',
-                    }}>사과 - 상</h2>                
-                    <p>남은 수량 99개</p>
+                        marginTop: '40px',
+                        marginBottom: '30px',
+                    }}>사과 - 상 (수량 99개)</h2>      
 
                     <div style={{
                         display: 'flex',
                         flexDirection: 'row',
-                       
+                        alignItems: 'center',
+                        marginTop: '60px',
+                        justifyContent: 'space-around',
+                        fontSize: '20px',
+                        fontWeight: 'bold',
                     }}>
                     <CountBox>
                     <CountBtn onClick={()=>{
@@ -167,7 +175,7 @@ const Product = () => {
                         }
                     }}>+</CountBtn>
                     </CountBox>
-                    <p style={{marginLeft:'30px'}}>{total}원</p> 
+                    <p style={{marginLeft:'30px', fontSize:"17px"}}>{total}원</p> 
                     </div>
                      
                 <OrderBox>
@@ -189,9 +197,12 @@ const Product = () => {
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                 }}>
-                <ChooseInfo onClick={()=>clickInfo()}>상세 설명</ChooseInfo>
-                <ChooseInfo onClick={()=>clickReview()}>리뷰</ChooseInfo>
-                <ChooseInfo onClick={()=>clickQnA()}>문의</ChooseInfo>
+                {viewInfo && <ChooseInfo style={{fontWeight:'bold'}}>상세 설명</ChooseInfo>}
+                {!viewInfo && <ChooseInfo onClick={()=>clickInfo()}>상세 설명</ChooseInfo>}
+                {viewReview && <ChooseInfo style={{fontWeight:'bold'}}>리뷰</ChooseInfo>}
+                {!viewReview && <ChooseInfo onClick={()=>clickReview()}>리뷰</ChooseInfo>}
+                {viewQnA && <ChooseInfo style={{fontWeight:'bold'}}>문의</ChooseInfo>}
+                {!viewQnA && <ChooseInfo onClick={()=>clickQnA()}>문의</ChooseInfo>}
                 </div>
                 <hr />
                 {viewInfo && <Info>
