@@ -32,17 +32,7 @@ export default function Home() {
     }
 }
 
-  const push = async () => {
-    try{
-      const response = await axios.post('/api/data', {name: 'Jane', age: 25})
-      console.log(response.data)
-    }
-    catch (error){
-      console.log(error)
-    }
-  }
   useEffect(() => {
-    push(),
     getItem()
   }, [])
 
@@ -52,7 +42,7 @@ export default function Home() {
 
     <ItemBox>
       {item.map((i : ItemProps)=>(
-        <Item id={i.id} name={i.name} price={i.price} review = {i.review} img={i.img}></Item>
+        <Item id={i.id} name={i.name} price={i.price} review = {i.review} img={i.img} cnt={i.cnt}></Item>
       ))}
     </ItemBox>
     </>

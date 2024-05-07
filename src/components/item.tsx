@@ -28,7 +28,7 @@ font-weight: 400;
 `
 
 const Item = (props) => {
-    const { id, name, price, review, img } = props
+    const { id, name, price, review, img, cnt } = props
 
     const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const Item = (props) => {
     }, [])
 
     return (
-            <ItemBox onClick={()=>navigate('./product')}>
+            <ItemBox onClick={()=>navigate('./product:id')}>
         <ItemImg src={img} alt="apple"/>
         <ItemInfo>
         <ItemName>{name}</ItemName>

@@ -59,7 +59,7 @@ const Header = () => {
             <Topname>IAM</Topname>
             <Bottomname>Intelligence Agricultural Manager</Bottomname>
             </Name>
-            <SearchBar onChange={(e)=>console.log(e.target.value)} />
+            <SearchBar/>
                     <Ul>
                         <NavItem onClick={()=>navigate('/signin')}>로그인</NavItem>
                         <NavItem onClick={()=>navigate('/signup')}>회원가입</NavItem>
