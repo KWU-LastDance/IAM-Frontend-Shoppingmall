@@ -1,7 +1,8 @@
 import Header from "../layouts/Header";
 import styled from 'styled-components';
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import axios from 'axios';
 
 const Img = styled.img`
 width: 250px;
@@ -84,12 +85,17 @@ const Info = styled.div`
     background-color: #F0F0F0;
     `
 
+
+
 const Product = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const item = {...location.state};
+    console.log(item);
 
     const [count, setCount] = useState(1);
-    const price : number = 3000;
-    const max : number = 99;
+    const price : number = item.price;
+    const max : number = item.cnt;
     const total : string = (price*count).toLocaleString();
 
     const [viewInfo, setViewInfo] = useState(true);
@@ -141,7 +147,7 @@ const Product = () => {
                 marginTop: '50px',
             }}>
                 <div>
-                <Img src='../public/img/apple.jpg' alt="apple" />
+                <Img src={item.img} alt="apple" />
                 </div>
                 <div style={{
                     textAlign: 'left',
@@ -149,7 +155,7 @@ const Product = () => {
                     <h2 style={{
                         marginTop: '40px',
                         marginBottom: '30px',
-                    }}>사과 - 상 (수량 99개)</h2>      
+                    }}>{item.name} (수량 {item.cnt}개)</h2>      
 
                     <div style={{
                         display: 'flex',

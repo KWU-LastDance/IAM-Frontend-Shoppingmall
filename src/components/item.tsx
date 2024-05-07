@@ -47,7 +47,7 @@ const Item = (props) => {
     }, [])
 
     return (
-            <ItemBox onClick={()=>navigate('./product:id')}>
+            <ItemBox onClick={()=>navigate(`/product/${id}`, {state: {id: id, name: name, price: price, review: review, img: img, cnt: cnt}})}>
         <ItemImg src={img} alt="apple"/>
         <ItemInfo>
         <ItemName>{name}</ItemName>
