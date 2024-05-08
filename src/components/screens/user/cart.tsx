@@ -270,7 +270,7 @@ const Cart = () => {
 
                 </Items>    
                 <Delivery>
-                    <p>배송비 3,000원</p>
+                    <p>+ 배송비 3,000원</p>
                 </Delivery>
 
                 <Hr />

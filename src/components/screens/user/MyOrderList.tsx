@@ -29,6 +29,7 @@ const OrderInfo = styled.div`
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 3px;
 
         `
 const OrderNum = styled.div`

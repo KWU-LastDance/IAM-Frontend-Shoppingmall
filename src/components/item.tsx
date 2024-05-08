@@ -48,7 +48,7 @@ const Item = (props) => {
 
     return (
             <ItemBox onClick={()=>navigate(`/product/${id}`, {state: {id: id, name: name, price: price, review: review, img: img, cnt: cnt}})}>
-        <ItemImg src={img} alt="apple"/>
+        <ItemImg src={`import.meta.env.VITE_PUBLIC_URL/${img}`} alt="apple"/>
         <ItemInfo>
         <ItemName>{name}</ItemName>
         <ItemPrice>{price}원</ItemPrice>

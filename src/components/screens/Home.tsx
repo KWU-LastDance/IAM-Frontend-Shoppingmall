@@ -11,7 +11,8 @@ interface ItemProps {
     price: number;
     review: number;
     img: string;
-}
+    cnt: number;
+  }
 
 export default function Home() {
   const ItemBox = styled.div`
