@@ -1,7 +1,8 @@
 import styled from "styled-components"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
-
+import useDebounce from "./hooks/useDebounce"
+import { useNavigate } from "react-router-dom";
 
 const Search = styled.form`
 display: flex;
@@ -62,22 +63,21 @@ padding-left: 10px;
 `
 
 const SearchBar = () => {
+    const navigate = useNavigate();
     const [search, setSearch] = useState('')
     const [searchList, setSearchList] = useState([])
 
     const Searching = (e) => {
         e.preventDefault()
         setSearch(e.target.value)
-        if(e.target.value !== '') {
-            console.log(search)
-            getSearch(e.target.value)
-            console.log(searchList)
+        if(search === '') {
+            setSearchList([])
         }
     }
 
-    const getSearch = async (text) => {
+    const getSearch = async (text:string) => {
         try {
-            const response = await axios.get('/api/item')
+            const response = await axios.get('/api/v1/product')
             const filter = response.data.filter((item) => item.name.includes(text))
             setSearchList(filter)
         } catch (error) {
@@ -85,14 +85,21 @@ const SearchBar = () => {
         }
     }
 
+    const debouncedSearch = useDebounce(search, 500)
+    useEffect(() => {
+        getSearch(search)
+    }, [debouncedSearch])
+
     const getSearchList = () => {
-        if(searchList.length === 0) {
+        if(searchList.length === 0 ) {
             return <p>검색 결과가 없습니다.</p>
         }
         return searchList.map((item) => {
             return (
                 <SearchItem key={item.id}>
+                    <div onClick={()=>navigate(`/product/${item.id}`)}>
                     <p>{item.name}</p>
+                    </div>
                 </SearchItem>
             )
         })

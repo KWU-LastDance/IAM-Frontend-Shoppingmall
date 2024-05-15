@@ -26,7 +26,7 @@ export default function Home() {
   const [item, setItem] = useState<ItemProps>([])
   const getItem = async () => {
     try {
-        const response = await axios.get('/api/item')
+        const response = await axios.get('/api/v1/product')
         setItem(response.data)
     } catch (error) {
         console.log(error)
