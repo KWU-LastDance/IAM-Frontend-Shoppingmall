@@ -8,5 +8,9 @@ export const handlers = [
         return res(ctx.status(200), ctx.json(items))
     }),
 
+    rest.get(`/api/v1/product/${items.id}`, (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(items))
+    }),
+
 
 ]

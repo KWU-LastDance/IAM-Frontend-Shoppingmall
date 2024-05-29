@@ -88,10 +88,24 @@ const Info = styled.div`
 
 
 const Product = () => {
+
+    const getItem = async () => {
+        try {
+            const response = await axios.get(`/api/v1/product/${item.id}`)
+            console.log(response.data)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
     const navigate = useNavigate();
     const location = useLocation();
     const item = {...location.state};
     console.log(item);
+    useEffect(() => {
+        getItem()
+    }, [])
 
     const [count, setCount] = useState(1);
     const price : number = item.price;
